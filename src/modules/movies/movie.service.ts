@@ -1,44 +1,31 @@
+
 import { TMovie } from "./movie.interface";
 import { Movie } from "./movie.model";
+import slugify from "slugify"; // Ensure this is installed via npm
+import { format } from "date-fns"; // Ensure date-fns is installed
+
 const createMovie = async (payload: TMovie) => {
+  // Way1: Business logic to format releaseDate and create slug
   
-  
-  /* 
-  Way1: Using business logic here....
+  const date = format(payload.releaseDate, "yyyy-MM-dd"); // Correct date format
 
-   title - releaseDate
-   WE will get: Inception Two 2010-07-16T00:00:00.000Z
-   We want:  inception-two -2010-07-16
-    
-   const date = format(payload.releaseDate, "dd-MM-yyyy");
+  // Creating slug
+  const slug = slugify(`${payload.title}-${date}`, {
+    lower: true,
+  });
 
-   //creating slug 
-   const slug = slugify(`${payload.title}-${date}}`, {
-       lower: true,
-   });
-   //const result = await Movie.create(payload);
-*/
-
-/* Way3: Using instance method logic here....
-
-  
-  const result = new Movie(payload);
-  
-  const slug = result.createSlug(payload);
-  
-  result.slug = slug;
-  await result.save(); // database save
-
+  // Assign the slug to the payload before creating the movie
+  const result = await Movie.create({ ...payload, slug });
   return result;
 };
-*/
+
 const getAllMovies = async () => {
   const result = await Movie.find();
   return result;
 };
 
 const getMovieBySlug = async (slug: string) => {
-  const result = await Movie.findOne({ slug: slug });
+  const result = await Movie.findOne({ slug });
   return result;
 };
 
@@ -47,5 +34,3 @@ export const MovieServices = {
   getAllMovies,
   getMovieBySlug,
 };
-
-//interface => schema => model => query
