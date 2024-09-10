@@ -1,6 +1,5 @@
+
 import { Model } from "mongoose";
-
-
 export type TMovie = {
   title: string;
   description: string;

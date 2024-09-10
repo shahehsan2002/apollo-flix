@@ -1,22 +1,7 @@
 import { format } from "date-fns";
 import { Schema, model } from "mongoose";
 import slugify from "slugify";
-import { TMovie, TMovieMethods, TMovieModel,  } from "./movie.interface";
-
-// const reviewSchema = new Schema<TReview>({
-//   email: {
-//     type: String,
-//     required: true,
-//   },
-//   rating: {
-//     type: Number,
-//     required: true,
-//   },
-//   comment: {
-//     type: String,
-//     required: true,
-//   },
-// });
+import { TMovie, TMovieMethods, TMovieModel } from "./movie.interface";
 
 const movieSchema = new Schema<TMovie, TMovieModel, TMovieMethods>({
   title: {
