@@ -9,10 +9,10 @@ router.post("/", MovieControllers.createMovie);
 router.get("/:slug", MovieControllers.getMovieBySlug);
 router.get("/", MovieControllers.getAllMovies);
 //?? Review route
-router.post(":slug/review", ReviewControllers.addReview);
-router.get(":slug/reviews", ReviewControllers.getAllReviews);
-router.get(":slug/review", ReviewControllers.getReviewById);
-router.put(":slug/review/:id", ReviewControllers.updateReview);
-router.delete(":slug/review/:id", ReviewControllers.deleteReview);
+router.post("/:slug/review", ReviewControllers.addReview);
+// router.get(":slug/reviews", ReviewControllers.getAllReviews);
+// router.get(":slug/review", ReviewControllers.getReviewById);
+// router.put(":slug/review", ReviewControllers.updateReview);
+// router.delete(":slug/review/", ReviewControllers.deleteReview);
 
 export const MovieRoutes = router;

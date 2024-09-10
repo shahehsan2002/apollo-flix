@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { ReviewServices } from "./review.service";
 
 const addReview = async (req: Request, res: Response) => {
+    const { slug } = req.params;
   const reviewData = req.body;
-  const result = await ReviewServices.createReview(reviewData);
+  const result = await ReviewServices.addReview(slug,reviewData);
 
   res.json({
     success: true,

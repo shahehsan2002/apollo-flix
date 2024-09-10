@@ -13,11 +13,11 @@ const addReview = async (slug: string,reviewData:Partial<TReview>):Promise<TRevi
     ...reviewData
 
  })
- const reviewCount = await Review.countDocuments({movie : movie._id})
+ const reviewsCount = await Review.countDocuments({movie : movie._id})
   
  await Movie.updateOne(
     {slug},
-    {totalRating:reviewCount},
+    {totalRating:reviewsCount},
     {new:true}
  )
 
@@ -26,8 +26,8 @@ const addReview = async (slug: string,reviewData:Partial<TReview>):Promise<TRevi
 
 export const ReviewServices = {
   addReview,
-  getReviewById,
-  getAllReviews,
-  updateReview,
-  deleteReview,
+//   getReviewById,
+//   getAllReviews,
+//   updateReview,
+//   deleteReview,
 };
